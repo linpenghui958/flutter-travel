@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/navigator/tab_navigator.dart';
 
 void main() => runApp(new MyApp());
 
@@ -9,11 +10,7 @@ class MyApp extends StatelessWidget{
     return new MaterialApp(
       title: 'image demo',
       theme: new ThemeData.fallback(),
-      home: Image(
-        width: 50,
-        height: 50,
-        image: AssetImage(pdf.png)
-      ),
+      home: TabNavigator(),
     );
   }
 }
