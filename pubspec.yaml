@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   flutter_swiper: ^1.1.4
+  flutter_advanced_networkimage: any
 
 dev_dependencies:
   flutter_test:
@@ -42,8 +43,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/pdf.png
+  assets:
+    - assets/pdf.png
+    - assets/banner1.jpg
+    - assets/banner2.jpg
+    - assets/banner3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
