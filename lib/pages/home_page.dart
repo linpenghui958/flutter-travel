@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:my_app/dao/home_dao.dart';
+import 'dart:convert';
+
+import 'package:my_app/model/home_model.dart';
+import 'package:my_app/widget/grid_nav.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -16,6 +21,13 @@ class _HomePageState extends State<HomePage> {
   ];
 
   double appBarAplh = 0;
+  String resultString = 'resultString';
+  
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   _onScroll(offset) {
     double aplh = offset / APPBAR_SCROLL_OFFSET;
@@ -28,6 +40,29 @@ class _HomePageState extends State<HomePage> {
       appBarAplh = aplh;
     });
     print(appBarAplh);
+  }
+
+  loadData() async {
+    // HomeDao.fetch().then((res) {
+    //   setState(() {
+    //     resultString = json.encode(res);
+    //   });
+    // }).catchError((e) {
+    //   setState(() {
+    //     resultString = e.toString();
+    //   });
+    // });
+    print('loaddata');
+     try {
+      HomeModel model = await HomeDao.fetch();
+      setState(() {
+        resultString = json.encode(model.config);
+      });
+     } catch (e) {
+       setState(() {
+         resultString = e.toString();
+       });
+     }
   }
 
   @override
@@ -62,10 +97,11 @@ class _HomePageState extends State<HomePage> {
                       pagination: SwiperPagination(),
                     )
                   ),
+                  GridNav(gridNavModel: null,),
                   Container(
                     height: 800,
                     child: ListTile(
-                      title: Text('linph'),
+                      title: Text(resultString),
                     ),
                   )
                 ],

@@ -47,4 +47,16 @@ class GridNavItem {
       item4: CommonModel.fromJson(json['item4']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['startColor'] = this.startColor;
+    data['endColor'] = this.endColor;
+    data['mainItem'] = this.mainItem;
+    data['item1'] = this.item1;
+    data['item2'] = this.item2;
+    data['item3'] = this.item3;
+    data['item4'] = this.item4;
+    return data;
+  }
 }
