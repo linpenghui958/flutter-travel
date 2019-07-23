@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:my_app/dao/home_dao.dart';
+import 'package:my_app/model/comon_model.dart';
 import 'dart:convert';
 
 import 'package:my_app/model/home_model.dart';
 import 'package:my_app/widget/grid_nav.dart';
+import 'package:my_app/widget/local_nav.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -22,6 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   double appBarAplh = 0;
   String resultString = 'resultString';
+  List<CommonModel> localNavList = [];
   
   @override
   void initState() {
@@ -56,18 +59,17 @@ class _HomePageState extends State<HomePage> {
      try {
       HomeModel model = await HomeDao.fetch();
       setState(() {
-        resultString = json.encode(model.config);
+        localNavList = model.localNavList;
       });
      } catch (e) {
-       setState(() {
-         resultString = e.toString();
-       });
+       print(e);
      }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
       body: Stack(
         children: <Widget>[
           MediaQuery.removePadding(
@@ -97,11 +99,14 @@ class _HomePageState extends State<HomePage> {
                       pagination: SwiperPagination(),
                     )
                   ),
-                  GridNav(gridNavModel: null,),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                    child: LocalNav(localNavList: localNavList),
+                  ),
                   Container(
                     height: 800,
                     child: ListTile(
-                      title: Text(resultString),
+                      title: Text('resultString'),
                     ),
                   )
                 ],

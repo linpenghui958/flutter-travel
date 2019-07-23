@@ -3,7 +3,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:my_app/model/home_model.dart';
-const HOME_URL = 'http://www.devio.org/io/flutter_app/json/home_page.json';
+// const HOME_URL = 'http://www.devio.org/io/flutter_app/json/home_page.json';
+const HOME_URL = 'http://blogimg.linph.cc/home_page.json';
 
 class HomeDao {
   static Future<HomeModel> fetch () async {
